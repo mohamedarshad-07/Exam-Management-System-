@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exam Management System</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef3ff;
+        margin: 0;
+    }
+
+    h1 {
+        background: #1d4ed8;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .container {
+        width: 350px;
+        margin: 60px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    input, select, button {
+        width: 90%;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #555;
+        font-size: 15px;
+    }
+
+    button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #1744c2;
+    }
+
+    .dashboard {
+        display: none;
+        padding: 20px;
+    }
+
+    .logout {
+        background: red;
+        margin-top: 20px;
+    }
+</style>
+
+</head>
+<body>
+
+<h1>Exam Management System</h1>
+
+<div class="container" id="loginBox">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <select id="role">
+        <option value="student">Student</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- Student Dashboard -->
+<div class="dashboard" id="studentDash">
+    <h2>Student Dashboard</h2>
+    <p>Welcome Student! Select exam to start.</p>
+    <ul>
+        <li>Math Test</li>
+        <li>Computer Science Test</li>
+        <li>Physics Test</li>
+    </ul>
+    <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<!-- Admin Dashboard -->
+<div class="dashboard" id="adminDash">
+    <h2>Admin Dashboard</h2>
+    <p>Manage Exams, Questions & Students</p>
+    <ul>
+        <li>Add Exam</li>
+        <li>Add Questions</li>
+        <li>View Students</li>
+    </ul>
+    <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<script>
+function login() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+    let role = document.getElementById("role").value;
+
+    if (user === "" || pass === "") {
+        alert("Please enter username & password!");
+        return;
+    }
+
+    // Demo login (without database)
+    if (role === "student") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("studentDash").style.display = "block";
+    } else if (role === "admin") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("adminDash").style.display = "block";
+    }
+}
+
+function logout() {
+    document.getElementById("studentDash").style.display = "none";
+    document.getElementById("adminDash").style.display = "none";
+    document.getElementById("loginBox").style.display = "block";
+}
+</script>
+
+</body>
+</html>
